@@ -176,7 +176,85 @@
 <footer>
   <p>© 2026 Olympus Server - The Isle Evrima</p>
 </footer>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Evrima</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background: #111; color: #eee; }
+    .card { background: #1b1b1b; padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px; border-bottom: 1px solid #333; text-align: left; }
+    a.button, button {
+      display: inline-block;
+      padding: 10px 16px;
+      margin-right: 10px;
+      background: #2d2d2d;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Panel del servidor Evrima</h1>
 
+  <div class="card">
+    <h2>Vincular cuentas</h2>
+    <a class="button" href="/auth/steam">Vincular Steam</a>
+    <a class="button" href="/auth/discord">Vincular Discord</a>
+    <p id="linked-user">No vinculado</p>
+  </div>
+
+  <div class="card">
+    <h2>Ranking global</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Jugador</th>
+          <th>Steam</th>
+          <th>Discord</th>
+          <th>Kills</th>
+          <th>Deaths</th>
+          <th>Puntos RCON</th>
+        </tr>
+      </thead>
+      <tbody id="ranking-body"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const API_RANKING = "/api/ranking";
+    const API_ME = "/api/me";
+
+    async function cargarPerfil() {
+      try {
+        const res = await fetch(API_ME);
+        const user = await res.json();
+
+        if (user.logged) {
+          document.getElementById('linked-user').textContent =
+            `${user.name} | Steam: ${user.steamLinked ? 'sí' : 'no'} | Discord: ${user.discordLinked ? 'sí' : 'no'}`;
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    async function cargarRanking() {
+      try {
+        const res = await fetch(API_RANKING);
+        const data = await res.json();
+
+        const body = document.getElementById('ranking-body');
+        body.innerHTML = '';
+
+        data.forEach(player => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${player.name}</td>
+  </script>
 </body>
 </html>
 
