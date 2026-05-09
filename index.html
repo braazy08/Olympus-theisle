@@ -4,16 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Olympus - The Isle Evrima</title>
+
   <style>
     body {
-        <script>
-fetch("http://localhost:3000/status")
-  .then(res => res.json())
-  .then(data => {
-    console.log("Servidor:", data.server);
-    console.log("Juego:", data.game);
-  });
-</script>
       margin: 0;
       font-family: Arial, sans-serif;
       background: #0f1115;
@@ -100,10 +93,11 @@ fetch("http://localhost:3000/status")
     }
   </style>
 </head>
+
 <body>
 
 <header>
-  <h1></h1>
+  <h1>Olympus</h1>
   <p>Servidor The Isle Evrima - Grow x2</p>
 </header>
 
@@ -117,53 +111,50 @@ fetch("http://localhost:3000/status")
 <section id="info">
   <h2>🌿 Bienvenido a Olympus</h2>
   <div class="card">
-    <p>Servidor de The Isle Evrima con crecimiento x2, pensado para una experiencia más rápida y divertida.</p>
-    <p><b>IP del servidor:</b> 104.243.37.54:7777</p>
+    <p>Servidor de The Isle Evrima con crecimiento x2.</p>
+    <p><b>IP:</b> 104.243.37.54:7777</p>
     <p><b>Discord:</b> https://discord.gg/Xb7mz7Swwc</p>
   </div>
 </section>
 
 <section id="membresias">
-  <h2>💎 Membresías Mensuales</h2>
+  <h2>💎 Membresías</h2>
   <div class="grid">
     <div class="card">
       <h3>Bronce</h3>
-      <p>+10% puntos de servidor</p>
-      <p>1 storage extra</p>
+      <p>+10% puntos</p>
       <button>Suscribirse</button>
     </div>
+
     <div class="card">
       <h3>Plata</h3>
-      <p>+25% puntos de servidor</p>
-      <p>3 storage extra</p>
+      <p>+25% puntos</p>
       <button>Suscribirse</button>
     </div>
+
     <div class="card">
       <h3>Oro</h3>
-      <p>+50% puntos de servidor</p>
-      <p>5 storage extra</p>
-      <p>Acceso a skins exclusivas</p>
+      <p>+50% puntos + skins</p>
       <button>Suscribirse</button>
     </div>
   </div>
 </section>
 
 <section id="tienda">
-  <h2>🛒 Tienda In-Game</h2>
+  <h2>🛒 Tienda</h2>
   <div class="grid">
     <div class="card">
       <h3>Skin Rara</h3>
-      <p>Personaliza tu dinosaurio</p>
       <button>Comprar</button>
     </div>
+
     <div class="card">
       <h3>Growth Boost</h3>
-      <p>Acelera tu crecimiento x2 extra</p>
       <button>Comprar</button>
     </div>
+
     <div class="card">
       <h3>Storage Pack</h3>
-      <p>Espacio extra para recursos</p>
       <button>Comprar</button>
     </div>
   </div>
@@ -172,110 +163,104 @@ fetch("http://localhost:3000/status")
 <section id="recompensas">
   <h2>🏆 Sistema de Puntos</h2>
   <div class="card">
-    <p>Gana puntos jugando en el servidor y úsalos para:</p>
-    <ul>
-      <li>Skins exclusivas</li>
-      <li>Boost de crecimiento</li>
-      <li>Storage adicional</li>
-    </ul>
+    <p>Gana puntos jugando y desbloquea recompensas.</p>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 Olympus Server - The Isle Evrima</p>
+  <p>© 2026 Olympus Server</p>
 </footer>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Panel Evrima</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 40px; background: #111; color: #eee; }
-    .card { background: #1b1b1b; padding: 20px; border-radius: 12px; margin-bottom: 20px; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 10px; border-bottom: 1px solid #333; text-align: left; }
-    a.button, button {
-      display: inline-block;
-      padding: 10px 16px;
-      margin-right: 10px;
-      background: #2d2d2d;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <h1>Panel del servidor Evrima</h1>
 
-  <div class="card">
-    <h2>Vincular cuentas</h2>
-    <a class="button" href="/auth/steam">Vincular Steam</a>
-    <a class="button" href="/auth/discord">Vincular Discord</a>
-    <p id="linked-user">No vinculado</p>
-  </div>
+<!-- PANEL SEPARADO FUNCIONAL -->
+<h1 style="margin:40px">Panel del servidor Evrima</h1>
 
-  <div class="card">
-    <h2>Ranking global</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Jugador</th>
-          <th>Steam</th>
-          <th>Discord</th>
-          <th>Kills</th>
-          <th>Deaths</th>
-          <th>Puntos RCON</th>
-        </tr>
-      </thead>
-      <tbody id="ranking-body"></tbody>
-    </table>
-  </div>
+<div class="card">
+  <h2>Vincular cuentas</h2>
+  <a class="button" href="/auth/steam">Steam</a>
+  <a class="button" href="/auth/discord">Discord</a>
+  <p id="linked-user">No vinculado</p>
+</div>
 
-  <script>
-    const API_RANKING = "/api/ranking";
-    const API_ME = "/api/me";
+<div class="card">
+  <h2>Ranking global</h2>
 
-    async function cargarPerfil() {
-      try {
-        const res = await fetch(API_ME);
-        const user = await res.json();
+  <table>
+    <thead>
+      <tr>
+        <th>Jugador</th>
+        <th>Steam</th>
+        <th>Discord</th>
+        <th>Kills</th>
+        <th>Deaths</th>
+        <th>Puntos</th>
+      </tr>
+    </thead>
 
-        if (user.logged) {
-          document.getElementById('linked-user').textContent =
-            `${user.name} | Steam: ${user.steamLinked ? 'sí' : 'no'} | Discord: ${user.discordLinked ? 'sí' : 'no'}`;
-        }
-      } catch (e) {
-        console.error(e);
-      }
-    }
+    <tbody id="ranking-body"></tbody>
+  </table>
+</div>
 
-    async function cargarRanking() {
-      try {
-        const res = await fetch(API_RANKING);
-        const data = await res.json();
+<style>
+  table { width:100%; border-collapse: collapse; }
+  th, td { padding:10px; border-bottom:1px solid #333; }
+  .button {
+    padding:10px 15px;
+    background:#2d2d2d;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    display:inline-block;
+    margin-right:10px;
+  }
+</style>
 
-        const body = document.getElementById('ranking-body');
-        body.innerHTML = '';
+<script>
+const API_RANKING = "/api/ranking";
+const API_ME = "/api/me";
 
-        data.forEach(player => {
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${player.name}</td>
-            fetch("http://localhost:3000/status")
-  .then(res => res.json())
-  .then(data => {
+async function cargarRanking() {
+  try {
+    const res = await fetch(API_RANKING);
+    const data = await res.json();
+
+    const body = document.getElementById("ranking-body");
+    body.innerHTML = "";
+
+    data.forEach(player => {
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+        <td>${player.name}</td>
+        <td>${player.steam || "-"}</td>
+        <td>${player.discord || "-"}</td>
+        <td>${player.kills}</td>
+        <td>${player.deaths}</td>
+        <td>${player.points}</td>
+      `;
+
+      body.appendChild(row);
+    });
+
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function cargarStatus() {
+  try {
+    const res = await fetch("http://localhost:3000/status");
+    const data = await res.json();
+
     console.log("Servidor:", data.server);
     console.log("Juego:", data.game);
-  })
-  .catch(err => console.error(err));
-fetch("http://localhost:3000/status")
-  .then(res => res.json())
-  .then(data => {
-    console.log("Servidor:", data.server);
-    console.log("Juego:", data.game);
-  })
-  .catch(err => console.error(err));
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+cargarRanking();
+cargarStatus();
 </script>
+
 </body>
 </html>
